@@ -1,0 +1,45 @@
+header {
+    background-color: var(--color-header-bg);
+    color: var(--color-header-text);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header img {
+    height: 40px;
+}
+
+header h1 {
+    font-size: 20px;
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 15px;
+}
+
+nav ul li a {
+    color: var(--color-header-text);
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.theme-toggle-btn {
+    padding: 5px 10px;
+    font-size: 0.9em;
+    background-color: rgba(255, 255, 255, 0.15); 
+    color: var(--color-header-text);
+    border: none;
+}

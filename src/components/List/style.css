@@ -1,0 +1,72 @@
+.tasks-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  margin: 8px 0;
+  border-radius: 12px;
+  color: #fff;
+
+}
+
+.past { background-color: #ff5643; } 
+.future, .pending { background-color: #42e987; } 
+
+
+
+.task-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer; 
+}
+
+.task-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+
+.task-date {
+  font-size: 0.9em;
+  opacity: 0.9;
+  white-space: nowrap;
+}
+
+.remove-btn, .edit-btn {
+  flex: 0 0 auto;
+  padding: 4px 8px;
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 6px;
+  border: none;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  cursor: pointer;
+}
+
+.task-tags {
+    flex: 0 0 auto; 
+    display: flex;
+    gap: 5px;
+    margin-left: auto; 
+}
+
+.task-tag-badge {
+    background-color: rgba(255, 255, 255, 0.4); 
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    white-space: nowrap;
+    color: #333; 
+}
