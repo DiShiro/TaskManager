@@ -27,16 +27,25 @@ function List({ list, removeTask, toggleComplete, editTask, updateTaskTags }) {
         }
     };
 
-   return (
-    <ul className="tasks-list">
-      {list.map(i => {
-        const date = new Date(i.date);
-        const datePast = date.getTime() - Date.now() < 0;
-        const itemClass = datePast ? "task-item past" : "task-item future";
+    return (
+        <ul className="tasks-list">
+            {list.map(i => {
+                const date = new Date(i.date);
+                const datePast = date.getTime() - Date.now() < 0;
+                const isOverdue = i.date && datePast && !i.isCompleted;
+                const itemClass = `task-item ${isOverdue ? 'past' : 'future'} ${i.isCompleted ? 'completed' : ''}`;
 
                 return (
                     <li key={i.id} className={itemClass}>
                         
+                        <input
+                            type="checkbox"
+                            checked={i.isCompleted || false}
+                            onChange={() => toggleComplete(i.id)}
+                            className="task-checkbox"
+                            title={i.isCompleted ? "Отменить выполнение" : "Отметить как выполненную"}
+                        />
+
                         {editingId === i.id ? ( 
                             <input
                                 type="text"
@@ -44,17 +53,20 @@ function List({ list, removeTask, toggleComplete, editTask, updateTaskTags }) {
                                 onChange={(e) => setEditText(e.target.value)}
                                 onBlur={() => handleEditSave(i.id)} 
                                 onKeyDown={(e) => handleKeyDown(e, i.id)}
-                                autoFocus className="task-edit-input"
+                                autoFocus
+                                className="task-edit-input"
                             />
                         ) : (
                             <span 
                                 className="task-text" 
                                 title={i.text}
-                                onDoubleClick={() => handleEditStart(i)} 
+                                onDoubleClick={() =>
+                                    handleEditStart(i)} 
                             >
                                 {i.text}
                             </span>
                         )}
+
                         {i.tags && i.tags.length > 0 && (
                             <div className="task-tags">
                                 {i.tags.map(tag => (
@@ -71,7 +83,7 @@ function List({ list, removeTask, toggleComplete, editTask, updateTaskTags }) {
                                 <button
                                     className="edit-btn"
                                     onClick={() => handleEditStart(i)}
-                                    aria-label={`Edit task ${i.text}`}
+                                    aria-label={`Редактировать задачу: ${i.text}`}
                                 >
                                     Edit
                                 </button>
@@ -79,7 +91,7 @@ function List({ list, removeTask, toggleComplete, editTask, updateTaskTags }) {
                             <button
                                 className="remove-btn"
                                 onClick={() => removeTask(i.id)}
-                                aria-label={`Remove task ${i.text}`}
+                                aria-label={`Удалить задачу: ${i.text}`}
                             >
                                 ×
                             </button>
